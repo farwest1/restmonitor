@@ -20,4 +20,8 @@ public class FacilityDao {
         return entityManager.find(Facility.class, id);
     }
 
+    public void saveFacility(Facility facility){
+        entityManager.persist(facility);
+    }
+
 }

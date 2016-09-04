@@ -5,6 +5,8 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,6 +16,7 @@ import javax.persistence.Persistence;
  * Created by Bernd on 30.08.2016.
  */
 public abstract class JpaBaseRolledBackTestCase {
+
     protected static EntityManagerFactory emf;
 
     protected EntityManager em;
