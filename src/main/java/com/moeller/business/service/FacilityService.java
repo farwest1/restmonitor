@@ -18,4 +18,8 @@ public class FacilityService {
     public void saveFacility(Facility facility){
         facilityDao.saveFacility(facility);
     }
+
+    public Facility readFacilty(long id){
+        return facilityDao.findFacilityById(id);
+    }
 }
