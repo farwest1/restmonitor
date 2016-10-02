@@ -5,6 +5,7 @@ import com.moeller.business.domain.Facility;
 import com.moeller.common.Service;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by Bernd on 04.09.2016.
@@ -21,5 +22,9 @@ public class FacilityService {
 
     public Facility readFacilty(long id){
         return facilityDao.findFacilityById(id);
+    }
+
+    public List<Facility> readFacilities(){
+        return facilityDao.findAllFacilities();
     }
 }

@@ -1,5 +1,7 @@
 package com.moeller.rest.dto;
 
+import com.moeller.business.domain.Facility;
+
 /**
  * Created by Bernd on 04.09.2016.
  */
@@ -20,6 +22,14 @@ public class FacilityDTO {
         this.port = port;
         this.probeService = probeService;
         this.probeUrl = probeUrl;
+    }
+
+    public FacilityDTO(Facility facility){
+        this.id = facility.getId();
+        this.ipAddress = facility.getIpAddress();
+        this.probeService = facility.getProbeService();
+        this.port = facility.getPort();
+        this.probeUrl = facility.getProbeUrl();
     }
 
     public long getId() {

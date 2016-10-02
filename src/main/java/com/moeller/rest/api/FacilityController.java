@@ -30,13 +30,8 @@ public class FacilityController {
     @Path("/{facilityId}")
     public FacilityDTO getFacility(@PathParam("facilityId") long id){
         Facility facility = facilityService.readFacilty(id);
-        FacilityDTO facilityDTO = new FacilityDTO(
-                facility.getId(),
-                facility.getIpAddress(),
-                facility.getPort(),
-                facility.getProbeService(),
-                facility.getProbeUrl());
-        return facilityDTO;
+
+        return  new FacilityDTO(facility);
 
     }
 }

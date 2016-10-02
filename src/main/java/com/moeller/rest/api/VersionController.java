@@ -23,6 +23,7 @@ public class VersionController {
     @GET
     @Produces("application/json")
     public Version getVersion() {
+        //TODO: This is only a temporary try to load test data.
         sampleDataLoader.init();
         return new Version();
     }
