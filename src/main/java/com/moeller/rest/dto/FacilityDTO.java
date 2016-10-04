@@ -1,6 +1,8 @@
 package com.moeller.rest.dto;
 
 import com.moeller.business.domain.Facility;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 /**
  * Created by Bernd on 04.09.2016.
@@ -30,6 +32,7 @@ public class FacilityDTO {
         this.probeService = facility.getProbeService();
         this.port = facility.getPort();
         this.probeUrl = facility.getProbeUrl();
+
     }
 
     public long getId() {

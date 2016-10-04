@@ -3,6 +3,9 @@ package com.moeller.rest.api;
 import com.moeller.business.domain.Facility;
 import com.moeller.business.service.FacilityService;
 import com.moeller.rest.dto.FacilityDTO;
+import org.dozer.DozerBeanMapper;
+import org.dozer.DozerBeanMapperSingletonWrapper;
+import org.dozer.Mapper;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -27,10 +30,12 @@ public class FacilitiesController {
     public List<FacilityDTO> getFacilities(){
         List<FacilityDTO> facilityDTOs = new ArrayList<FacilityDTO>();
         List<Facility> facilities = facilityService.readFacilities();
+        //TODO: implement a single Dozer instance solution
+        Mapper mapper = new DozerBeanMapper();
 
         //Moe: Do not really understand what I'm doing but it must be the latest stuff :-)
         facilities.forEach((facility -> {
-            facilityDTOs.add(new FacilityDTO(facility));
+            facilityDTOs.add(mapper.map(facility, FacilityDTO.class));
         }));
         return facilityDTOs;
     }

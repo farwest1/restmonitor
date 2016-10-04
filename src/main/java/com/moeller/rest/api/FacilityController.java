@@ -3,6 +3,8 @@ package com.moeller.rest.api;
 import com.moeller.business.domain.Facility;
 import com.moeller.business.service.FacilityService;
 import com.moeller.rest.dto.FacilityDTO;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -29,9 +31,12 @@ public class FacilityController {
     @GET
     @Path("/{facilityId}")
     public FacilityDTO getFacility(@PathParam("facilityId") long id){
+        FacilityDTO facilityDTO;
         Facility facility = facilityService.readFacilty(id);
+        Mapper mapper = new DozerBeanMapper();
+        facilityDTO = mapper.map(facility, FacilityDTO.class);
 
-        return  new FacilityDTO(facility);
+        return  facilityDTO;
 
     }
 }
