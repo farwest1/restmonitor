@@ -1,0 +1,4 @@
+<template>
+  <input-field default="JBoss 10.2.0.Final">IJ_APPLICATION_SERVER</input-field>
+  <input-field default="com.moeller">IJ_BASE_PACKAGE</input-field>
+</template>

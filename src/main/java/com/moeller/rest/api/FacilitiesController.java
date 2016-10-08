@@ -25,13 +25,15 @@ public class FacilitiesController {
     @Inject
     private FacilityService facilityService;
 
+    @Inject
+    private Mapper mapper;
+
     @GET
     @Produces("application/json")
     public List<FacilityDTO> getFacilities(){
         List<FacilityDTO> facilityDTOs = new ArrayList<FacilityDTO>();
         List<Facility> facilities = facilityService.readFacilities();
-        //TODO: implement a single Dozer instance solution
-        Mapper mapper = new DozerBeanMapper();
+
 
         //Moe: Do not really understand what I'm doing but it must be the latest stuff :-)
         facilities.forEach((facility -> {

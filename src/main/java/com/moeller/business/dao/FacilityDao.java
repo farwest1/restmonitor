@@ -2,6 +2,8 @@ package com.moeller.business.dao;
 
 import com.moeller.business.domain.Facility;
 import com.moeller.common.Dao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,8 +16,15 @@ import java.util.List;
 @Dao
 public class FacilityDao {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(FacilityDao.class);
+
     @PersistenceContext(unitName = "primary")
     private EntityManager entityManager;
+
+
+    protected void setEntityManager(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
 
     public Facility findFacilityById(long id){
         return entityManager.find(Facility.class, id);
@@ -23,9 +32,11 @@ public class FacilityDao {
 
     //TODO: Write test
     public List<Facility> findAllFacilities(){
-        return entityManager.
+        List<Facility> facilities= entityManager.
                 createQuery("select f from Facility f", Facility.class)
                 .getResultList();
+        LOGGER.debug("Found " + facilities.size() + " facilities in database");
+        return facilities;
     }
 
     public void saveFacility(Facility facility){
