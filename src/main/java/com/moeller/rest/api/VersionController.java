@@ -2,6 +2,7 @@ package com.moeller.rest.api;
 
 import com.moeller.business.service.SampleDataLoader;
 import com.moeller.rest.dto.Version;
+import org.apache.camel.CamelContext;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -19,6 +20,9 @@ public class VersionController {
 
     @Inject
     private SampleDataLoader sampleDataLoader;
+
+    @Inject
+    CamelContext camelContext;
 
     @GET
     @Produces("application/json")
