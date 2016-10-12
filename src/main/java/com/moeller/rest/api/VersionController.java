@@ -1,6 +1,7 @@
 package com.moeller.rest.api;
 
 import com.moeller.business.service.SampleDataLoader;
+import com.moeller.configuration.MyFeatures;
 import com.moeller.rest.dto.Version;
 import org.apache.camel.CamelContext;
 
@@ -28,7 +29,9 @@ public class VersionController {
     @Produces("application/json")
     public Version getVersion() {
         //TODO: This is only a temporary try to load test data.
-        sampleDataLoader.init();
+        if(MyFeatures.FEATURE_ONE.isActive()) {
+            sampleDataLoader.init();
+        }
         return new Version();
     }
 }
