@@ -12,6 +12,6 @@ public class MyRouteBuilder extends RouteBuilder{
     public void configure() throws Exception {
             from("jetty:http://localhost:8555/triggerit?matchOnUriPrefix=true")
                     .to("log:com.moeller.rest.integration.httpproxy")
-                    .to("http://localhost:8080/restmonitor/restmonitor?bridgeEndpoint=true");
+                    .to("http://172.28.128.3:8080/loadb/resources?bridgeEndpoint=true");
     }
 }
