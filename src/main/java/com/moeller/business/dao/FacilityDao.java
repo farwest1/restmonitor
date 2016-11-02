@@ -30,6 +30,12 @@ public class FacilityDao {
         return entityManager.find(Facility.class, id);
     }
 
+    public Facility findFacilityByFacilityId(long facilityId) {
+        LOGGER.debug("Find Facility for id " + facilityId);
+        TypedQuery<Facility> query = entityManager.createNamedQuery("Facility.findByFacilityId", Facility.class );
+        return query.setParameter("facilityId", facilityId).getSingleResult();
+    }
+
     //TODO: Write test
     public List<Facility> findAllFacilities(){
         List<Facility> facilities= entityManager.
