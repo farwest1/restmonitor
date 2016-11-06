@@ -15,6 +15,6 @@ public class MyFilterBean {
 
     public boolean isValid (){
         LOGGER.info("Message filter was called");
-        return false;
+        return true;
     }
 }

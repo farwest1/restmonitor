@@ -25,10 +25,19 @@ public class SampleDataLoader {
         LOGGER.info("Load Sample Data");
         Facility facility = new Facility(
                                     2010,
-                                    "127.0.0.1",
-                                    "1521",
+                                    "172.28.128.3",
+                                    "8080",
                                     "ProbeService",
-                                    "/url");
+                                    "/loadb/resources");
+
+        facilityService.saveFacility(facility);
+
+        facility = new Facility(
+                2011,
+                "172.28.128.3",
+                "8090",
+                "ProbeService",
+                "/loadb/resources");
 
         facilityService.saveFacility(facility);
 

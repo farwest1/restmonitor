@@ -1,10 +1,12 @@
 package com.moeller.rest.integration;
 
+import com.moeller.business.dao.FacilityDao;
 import org.apache.camel.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 /**
  * Provides the dynamic endpoint to the route based on the header
@@ -14,17 +16,18 @@ public class DynamicRoutes {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DynamicRoutes.class);
 
+    @Inject
+    FacilityDao facilityDao;
+
     public String getPort(Message message){
 
         String facilityId = (String)message.getHeader("X-FAC");
 
         LOGGER.info("Get Port dynamically for " + facilityId);
 
-        if("2010".equals(facilityId))
-            return "http://172.28.128.3:8080/loadb/resources?bridgeEndpoint=true";
-        else if ("2011".equals(facilityId))
-            return "http://172.28.128.3:8090/loadb/resources?bridgeEndpoint=true";
-        else
-            return "";
+        String url = facilityDao.findFacilityByFacilityId(Long.parseLong(facilityId,10)).getFullURL();
+
+        return url + "?bridgeEndpoint=true";
+
     }
 }

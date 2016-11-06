@@ -81,4 +81,8 @@ public class Facility {
     public void setProbeUrl(String probeUrl) {
         this.probeUrl = probeUrl;
     }
+
+    public String getFullURL(){
+        return "http://" + ipAddress + ":" + port  + probeUrl;
+    }
 }
