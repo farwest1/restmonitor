@@ -1,5 +1,6 @@
 package com.moeller.business.dao;
 
+import com.moeller.business.Protocol;
 import com.moeller.business.domain.Facility;
 import com.moeller.test.JpaBaseRolledBackTestCase;
 import org.junit.Test;
@@ -16,7 +17,7 @@ public class FacilityDaoTest extends JpaBaseRolledBackTestCase {
     public void findFacilityById() throws Exception {
         FacilityDao facilityDao = new FacilityDao();
         facilityDao.setEntityManager(em);
-        facilityDao.saveFacility( new Facility(2010, "1.2.3.4","1234","probeit", "probeurl"));
+        facilityDao.saveFacility( new Facility(2010, Protocol.HTTP,"1.2.3.4","1234","probeit", "probeurl"));
 
         List<Facility> facilities = facilityDao.findAllFacilities();
 
@@ -26,7 +27,7 @@ public class FacilityDaoTest extends JpaBaseRolledBackTestCase {
 
     @Test
     public void saveFacility() throws Exception {
-        Facility facility = new Facility(2010,"1.2.3.4","1234","probeit", "probeurl");
+        Facility facility = new Facility(2010,Protocol.HTTP, "1.2.3.4","1234","probeit", "probeurl");
         em.persist(facility);
         em.flush();
     }
@@ -34,8 +35,8 @@ public class FacilityDaoTest extends JpaBaseRolledBackTestCase {
     @Test(expected = javax.persistence.PersistenceException.class)
     public void checkUniqueFacilityId()throws Exception{
 
-        Facility facilityA = new Facility(2010, "1.2.3.4","1234","probeit", "probeurl");
-        Facility facilityB = new Facility(2010, "5.6.7.8","1234","probeit", "probeurl");
+        Facility facilityA = new Facility(2010, Protocol.HTTP, "1.2.3.4","1234","probeit", "probeurl");
+        Facility facilityB = new Facility(2010, Protocol.HTTP,"5.6.7.8","1234","probeit", "probeurl");
         em.persist(facilityA);
         em.persist(facilityB);      // Hier muesste es eigentlich knallen
         em.flush();
@@ -45,7 +46,7 @@ public class FacilityDaoTest extends JpaBaseRolledBackTestCase {
     public void findFacilityByFacilityId() throws Exception {
         FacilityDao facilityDao = new FacilityDao();
         facilityDao.setEntityManager(em);
-        Facility facility = new Facility(2010, "1.2.3.4","1234","probeit", "probeurl");
+        Facility facility = new Facility(2010, Protocol.HTTP, "1.2.3.4","1234","probeit", "probeurl");
         em.persist(facility);
         //em.flush();
 

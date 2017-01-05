@@ -1,5 +1,6 @@
 package com.moeller.business.service;
 
+import com.moeller.business.Protocol;
 import com.moeller.business.domain.Facility;
 import com.moeller.common.Service;
 import org.slf4j.Logger;
@@ -25,15 +26,17 @@ public class SampleDataLoader {
         LOGGER.info("Load Sample Data");
         Facility facility = new Facility(
                                     2010,
-                                    "172.28.128.3",
-                                    "8080",
-                                    "ProbeService",
-                                    "/loadb/resources");
+                                    Protocol.HTTPS,
+                                    "wwww.evopark.de",
+                                    "443",
+                                    "econnect",
+                                    "/api/v1/version");
 
         facilityService.saveFacility(facility);
 
         facility = new Facility(
                 2011,
+                Protocol.HTTP,
                 "172.28.128.3",
                 "8090",
                 "ProbeService",

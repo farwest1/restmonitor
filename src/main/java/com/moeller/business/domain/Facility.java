@@ -1,5 +1,7 @@
 package com.moeller.business.domain;
 
+import com.moeller.business.Protocol;
+
 import javax.persistence.*;
 
 /**
@@ -22,6 +24,9 @@ public class Facility {
     @Column(nullable = false, unique = true)
     private long facilityId;
 
+    @Enumerated(EnumType.STRING)
+    private Protocol protocol;
+
     private String ipAddress;
     private String port;
     private String probeService;
@@ -30,8 +35,9 @@ public class Facility {
     protected Facility() { //for JPA
     }
 
-    public Facility(long facilityId, String ipAddress, String port, String probeService, String probeUrl){
+    public Facility(long facilityId, Protocol protocol, String ipAddress, String port, String probeService, String probeUrl){
         this.facilityId = facilityId;
+        this.protocol = protocol;
         this.ipAddress = ipAddress;
         this.port = port;
         this.probeService = probeService;
@@ -44,6 +50,14 @@ public class Facility {
 
     public long getFacilityId() {
         return facilityId;
+    }
+
+    public Protocol getProtocol(){
+        return protocol;
+    }
+
+    public void setProtocol(Protocol protocol){
+        this.protocol = protocol;
     }
 
     public void setFacilityId(long facilityId) {
@@ -83,6 +97,6 @@ public class Facility {
     }
 
     public String getFullURL(){
-        return "http://" + ipAddress + ":" + port  + probeUrl;
+        return protocol.toString().toLowerCase() + "://" + ipAddress + ":" + port  + probeUrl;
     }
 }

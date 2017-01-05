@@ -29,7 +29,7 @@ public class MyRouteBuilder extends RouteBuilder{
     public void configure() throws Exception {
 
         // configure SSL
-        SSLContextClientParameters sccp = new SSLContextClientParameters();
+   /*     SSLContextClientParameters sccp = new SSLContextClientParameters();
 
         SSLContextParameters scp = new SSLContextParameters();
         TrustManagersParameters tmp = new TrustManagersParameters();
@@ -44,7 +44,7 @@ public class MyRouteBuilder extends RouteBuilder{
                 new Protocol(
                         "https",
                         factory,
-                        443));
+                        443));*/
 
 
         from("jetty:http://localhost:8555/triggerit?matchOnUriPrefix=true")
