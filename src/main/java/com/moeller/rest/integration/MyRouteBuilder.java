@@ -47,7 +47,7 @@ public class MyRouteBuilder extends RouteBuilder{
                         443));*/
 
 
-        from("jetty:http://localhost:8555/triggerit?matchOnUriPrefix=true")
+        from("jetty:http://192.168.2.108:8555/triggerit?matchOnUriPrefix=true")
                     .filter().method(myFilterBean, "isValid")
                     .to("log:com.moeller.rest.integration.httpproxy?showAll=true")
                     .recipientList(method(dynamicRoutes,"getPort"));

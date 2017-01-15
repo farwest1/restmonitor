@@ -37,10 +37,10 @@ public class SampleDataLoader {
         facility = new Facility(
                 2011,
                 Protocol.HTTP,
-                "172.28.128.3",
-                "8090",
+                "localhost",
+                "8080",
                 "ProbeService",
-                "/loadb/resources");
+                "/loadb/resources/loadb");
 
         facilityService.saveFacility(facility);
 
